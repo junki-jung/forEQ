@@ -44,27 +44,36 @@ class CarInterface(CarInterfaceBase):
       if fw.ecu == "eps" and b"," in fw.fwVersion:
         eps_modified = True
 
-    ret.maxSteeringAngleDeg = 120.
+    ret.maxSteeringAngleDeg = 90.
 
     # lateral
-    ret.lateralTuning.init('lqr')
+#    ret.lateralTuning.init('lqr')
 
-    ret.lateralTuning.lqr.scale = 1680.
-    ret.lateralTuning.lqr.ki = 0.01
-    ret.lateralTuning.lqr.dcGain = 0.002858
+#    ret.lateralTuning.lqr.scale = 1680.
+#    ret.lateralTuning.lqr.ki = 0.01
+#    ret.lateralTuning.lqr.dcGain = 0.002858
 
-    ret.lateralTuning.lqr.a = [0., 1., -0.22619643, 1.21822268]
-    ret.lateralTuning.lqr.b = [-1.92006585e-04, 3.95603032e-05]
-    ret.lateralTuning.lqr.c = [1., 0.]
-    ret.lateralTuning.lqr.k = [-110.73572306, 451.22718255]
-    ret.lateralTuning.lqr.l = [0.3233671, 0.3185757]
+#    ret.lateralTuning.lqr.a = [0., 1., -0.22619643, 1.21822268]
+#    ret.lateralTuning.lqr.b = [-1.92006585e-04, 3.95603032e-05]
+#    ret.lateralTuning.lqr.c = [1., 0.]
+#    ret.lateralTuning.lqr.k = [-110.73572306, 451.22718255]
+#    ret.lateralTuning.lqr.l = [0.3233671, 0.3185757]
 
-    ret.steerRatio = 17.2
-    ret.steerActuatorDelay = 0.0
+    # pied_add
+    ret.lateralTuning.pid.kf = 0.00005
+    ret.lateralTuning.pid.kpBP = [0., 9.]
+    ret.lateralTuning.pid.kpV = [0.1, 0.18]
+    ret.lateralTuning.pid.kiBP = [0., 9.]
+    ret.lateralTuning.pid.kiV = [0.01, 0.35]
+    ret.lateralTuning.pid.kdB = [0.]
+    ret.lateralTuning.pid.kdV = [1.5]
+
+    ret.steerRatio = 14.0
+    ret.steerActuatorDelay = 0.2
     ret.steerLimitTimer = 2.0
-    ret.steerRateCost = 0.552
+    ret.steerRateCost = 0.35
     ret.steerMaxBP = [0.]
-    ret.steerMaxV = [1.5]
+    ret.steerMaxV = [1.3]
 
     # longitudinal
 #    ret.longitudinalTuning.kpBP = [0, 10. * CV.KPH_TO_MS, 20. * CV.KPH_TO_MS, 40. * CV.KPH_TO_MS, 70. * CV.KPH_TO_MS, 100. * CV.KPH_TO_MS]
