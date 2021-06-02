@@ -323,7 +323,7 @@ class SccSmoother:
     elif CS.cruiseState_enabled:
       if CS.gas_pressed and self.sync_set_speed_while_gas_pressed and CS.cruise_buttons == Buttons.NONE:
         if clu11_speed + 2. > self.kph_to_clu(controls.v_cruise_kph):
-          set_speed = clip(clu11_speed + 8., self.min_set_speed_clu, self.max_set_speed_clu)
+          set_speed = clip(clu11_speed + 5., self.min_set_speed_clu, self.max_set_speed_clu)
           self.target_speed = set_speed
 
   def update_max_speed(self, max_speed):
